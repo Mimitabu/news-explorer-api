@@ -1,4 +1,6 @@
-const Article = require('../models/article.js');
+const Article = require('../models/article');
+const NotFoundError = require('../errors/not-found-error');
+const ForbiddenError = require('../errors/forbidden-error');
 
 // возвращает все статьи, что есть в базе
 const getArticles = (req, res, next) => {
@@ -21,6 +23,7 @@ const createArticle = (req, res, next) => {
     .catch(next);
 };
 
+// удаляет статью
 const deleteArticle = (req, res, next) => {
   const { _id } = req.user;
   const { articleId } = req.params;
@@ -28,17 +31,17 @@ const deleteArticle = (req, res, next) => {
   Article.findOne({ _id: articleId })
     .then((article) => {
       if (!article) {
-        throw new //ошибка ненахождения ИМЯ('Article not found');
+        throw new NotFoundError('Article not found');
       }
       return article;
     })
     .then((article) => {
       if (String(article.owner) === _id) {
         Article.findByIdAndRemove(articleId)
-          .then((article) => res.send(article))
+          .then((data) => res.send(data))
           .catch(next);
       } else {
-        throw new //ошибка доступа('Пользователи могут удалять только свои карточки');
+        throw new ForbiddenError('You can only delete your articles');
       }
     })
     .catch(next);
