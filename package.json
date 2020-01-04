@@ -19,11 +19,15 @@
   },
   "homepage": "https://github.com/Mimitabu/news-explorer-api#readme",
   "dependencies": {
+    "bcryptjs": "^2.4.3",
     "body-parser": "^1.19.0",
     "cross-env": "^6.0.3",
+    "crypto": "^1.0.1",
+    "dotenv": "^8.2.0",
     "eslint-config-airbnb-base": "^14.0.0",
     "eslint-plugin-import": "^2.19.1",
     "express": "^4.17.1",
+    "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.8.4",
     "validator": "^12.1.0"
   },
