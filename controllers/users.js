@@ -7,7 +7,7 @@ const { NODE_ENV, JWT_SECRET } = process.env;
 
 // возвращает информацию о пользователе (email и имя)
 const getUser = (req, res, next) => {
-  User.find({})
+  User.findById(req.user._id)
     .then((user) => res.send({
       email: user.email,
       name: user.name,

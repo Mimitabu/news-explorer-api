@@ -2,13 +2,15 @@ require('dotenv').config();
 const express = require('express');
 const bodyParser = require('body-parser');
 const { celebrate, Joi } = require('celebrate');
-const { errors } = require('celebrate');
+
 const mongoose = require('mongoose');
-const { requestLogger, errorLogger } = require('./middlewares/logger');
 
 const app = express();
 
 const { PORT = 3000 } = process.env;
+
+const { errors } = require('celebrate');
+const { requestLogger, errorLogger } = require('./middlewares/logger');
 
 const { login, createUser } = require('./controllers/users');
 const auth = require('./middlewares/auth');

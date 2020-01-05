@@ -18,7 +18,7 @@ routerArticles.post('/articles', celebrate({
     link: Joi.string().required(),
     image: Joi.string().required(),
   }),
-}), createArticle); // здесь нужна валидация переданных данных
-routerArticles.delete('/articles', deleteArticle);
+}), createArticle);
+routerArticles.delete('/articles/articleId', deleteArticle);
 
 module.exports = routerArticles;
