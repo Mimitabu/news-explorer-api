@@ -5,7 +5,6 @@ const ForbiddenError = require('../errors/forbidden-error');
 // возвращает все статьи, что есть в базе
 const getArticles = (req, res, next) => {
   Article.find({}) // при передаче пустого объекта, без параметров поиска, возвращает все
-    .populate('owner')
     .then((articles) => res.send({ data: articles }))
     .catch(next);
 };
