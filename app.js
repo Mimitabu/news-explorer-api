@@ -38,7 +38,7 @@ app.post('/signin', celebrate({
 app.post('/signup', celebrate({
   body: Joi.object().keys({
     email: Joi.string().required().email(),
-    password: Joi.string().required(),
+    password: Joi.string().required().min(6),
     name: Joi.string().required().min(2).max(30),
   }),
 }), createUser);
@@ -67,7 +67,7 @@ app.use((err, req, res, next) => {
     .status(statusCode)
     .send({
       message: statusCode === 500
-        ? 'На сервере произошла ошибка'
+        ? 'An error occurred on the server'
         : message,
     });
   next();

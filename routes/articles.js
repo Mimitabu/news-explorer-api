@@ -19,6 +19,6 @@ routerArticles.post('/articles', celebrate({
     image: Joi.string().required(),
   }),
 }), createArticle);
-routerArticles.delete('/articles/articleId', deleteArticle);
+routerArticles.delete('/articles/:articleId', deleteArticle);
 
 module.exports = routerArticles;

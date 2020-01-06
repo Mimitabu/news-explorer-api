@@ -5,6 +5,7 @@ const ForbiddenError = require('../errors/forbidden-error');
 // возвращает все статьи, что есть в базе
 const getArticles = (req, res, next) => {
   Article.find({}) // при передаче пустого объекта, без параметров поиска, возвращает все
+    .populate('owner')
     .then((articles) => res.send({ data: articles }))
     .catch(next);
 };
@@ -29,6 +30,7 @@ const deleteArticle = (req, res, next) => {
   const { articleId } = req.params;
 
   Article.findOne({ _id: articleId })
+    .populate('owner')
     .then((article) => {
       if (!article) {
         throw new NotFoundError('Article not found');
@@ -36,7 +38,7 @@ const deleteArticle = (req, res, next) => {
       return article;
     })
     .then((article) => {
-      if (String(article.owner) === _id) {
+      if (String(article.owner._id) === _id) {
         Article.findByIdAndRemove(articleId)
           .then((data) => res.send(data))
           .catch(next);

@@ -30,7 +30,7 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: true,
     validate: {
-      validator: (v) => validator.isEmail(v, { protocols: ['http', 'https'], require_tld: true, require_protocol: true }),
+      validator: (v) => validator.isURL(v, { protocols: ['http', 'https'], require_tld: true, require_protocol: true }),
       message: 'It is not valid URL',
     },
   },
@@ -38,7 +38,7 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: true,
     validate: {
-      validator: (v) => validator.isEmail(v, { protocols: ['http', 'https'], require_tld: true, require_protocol: true }),
+      validator: (v) => validator.isURL(v, { protocols: ['http', 'https'], require_tld: true, require_protocol: true }),
       message: 'It is not valid URL',
     },
   },
