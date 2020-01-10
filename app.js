@@ -1,7 +1,6 @@
 require('dotenv').config();
 const express = require('express');
 const bodyParser = require('body-parser');
-const { celebrate, Joi } = require('celebrate');
 
 const mongoose = require('mongoose');
 
@@ -13,7 +12,9 @@ const { errors } = require('celebrate');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
 
 const { login, createUser } = require('./controllers/users');
+const { routerUsers, routerArticles } = require('./routes/index');
 const auth = require('./middlewares/auth');
+const { signinValidation, signupValidation } = require('./validation');
 
 mongoose.connect('mongodb://localhost:27017/newsdb', {
   useNewUrlParser: true,
@@ -29,23 +30,13 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(requestLogger);
 
 // аутентификация и авторизация
-app.post('/signin', celebrate({
-  body: Joi.object().keys({
-    email: Joi.string().required().email(),
-    password: Joi.string().required(),
-  }),
-}), login);
-app.post('/signup', celebrate({
-  body: Joi.object().keys({
-    email: Joi.string().required().email(),
-    password: Joi.string().required().min(6),
-    name: Joi.string().required().min(2).max(30),
-  }),
-}), createUser);
+app.post('/signin', signinValidation, login);
+app.post('/signup', signupValidation, createUser);
 
 // роуты, защищенные авторизацией
-app.use('/', auth, require('./routes/users'));
-app.use('/', auth, require('./routes/articles'));
+app.use(auth);
+app.use('/', routerUsers, routerArticles);
+
 
 // роут по умолчанию
 app.use('*', (req, res) => {
