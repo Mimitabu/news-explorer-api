@@ -1,6 +1,10 @@
 const Article = require('../models/article');
 const NotFoundError = require('../errors/not-found-error');
 const ForbiddenError = require('../errors/forbidden-error');
+const {
+  ForbiddenErrorMessage,
+  notFoundErrorMessage,
+} = require('../messages');
 
 // возвращает все статьи пользователя, что есть в базе
 const getArticles = (req, res, next) => {
@@ -32,7 +36,7 @@ const deleteArticle = (req, res, next) => {
     .populate('owner')
     .then((article) => {
       if (!article) {
-        throw new NotFoundError('Article not found');
+        throw new NotFoundError(notFoundErrorMessage);
       }
       return article;
     })
@@ -42,7 +46,7 @@ const deleteArticle = (req, res, next) => {
           .then((data) => res.send(data))
           .catch(next);
       } else {
-        throw new ForbiddenError('You can only delete your articles');
+        throw new ForbiddenError(ForbiddenErrorMessage);
       }
     })
     .catch(next);

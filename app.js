@@ -15,6 +15,7 @@ const { login, createUser } = require('./controllers/users');
 const { routerUsers, routerArticles } = require('./routes/index');
 const auth = require('./middlewares/auth');
 const { signinValidation, signupValidation } = require('./validation');
+const centraliseErrors = require('./middlewares/centraliseErrors');
 
 mongoose.connect('mongodb://localhost:27017/newsdb', {
   useNewUrlParser: true,
@@ -51,17 +52,6 @@ app.use(errorLogger);
 app.use(errors());
 
 // централизованный обработчик ошибок
-app.use((err, req, res, next) => {
-  const { statusCode = 500, message } = err;
-
-  res
-    .status(statusCode)
-    .send({
-      message: statusCode === 500
-        ? 'An error occurred on the server'
-        : message,
-    });
-  next();
-});
+app.use(centraliseErrors);
 
 app.listen(PORT);
