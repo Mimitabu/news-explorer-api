@@ -2,9 +2,9 @@ const Article = require('../models/article');
 const NotFoundError = require('../errors/not-found-error');
 const ForbiddenError = require('../errors/forbidden-error');
 
-// возвращает все статьи, что есть в базе
+// возвращает все статьи пользователя, что есть в базе
 const getArticles = (req, res, next) => {
-  Article.find({}) // при передаче пустого объекта, без параметров поиска, возвращает все
+  Article.find({ owner: req.user._id }).select('+owner')
     .then((articles) => res.send({ data: articles }))
     .catch(next);
 };
