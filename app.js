@@ -2,21 +2,20 @@ require('dotenv').config();
 const helmet = require('helmet');
 const express = require('express');
 const bodyParser = require('body-parser');
-
 const mongoose = require('mongoose');
 
 const app = express();
+const { errors } = require('celebrate');
+const limiter = require('./limiter');
 
 const { PORT = 3000 } = process.env;
-
-const { errors } = require('celebrate');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
-
 const { login, createUser } = require('./controllers/users');
 const { routerUsers, routerArticles } = require('./routes/index');
 const auth = require('./middlewares/auth');
 const { signinValidation, signupValidation } = require('./validation');
 const centraliseErrors = require('./middlewares/centraliseErrors');
+const { notFoundErrorMessage } = require('./messages');
 
 mongoose.connect('mongodb://localhost:27017/newsdb', {
   useNewUrlParser: true,
@@ -29,6 +28,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use(helmet());
+app.use(limiter);
 
 // логгер запросов
 app.use(requestLogger);
@@ -41,11 +41,10 @@ app.post('/signup', signupValidation, createUser);
 app.use(auth);
 app.use('/', routerUsers, routerArticles);
 
-
 // роут по умолчанию
 app.use('*', (req, res) => {
   res.set('Content-Type', 'application/json');
-  res.status(404).send({ message: 'The requested resource is not found' });
+  res.status(404).send({ message: notFoundErrorMessage });
 });
 
 // логгер ошибок
