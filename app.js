@@ -28,7 +28,7 @@ mongoose.connect('mongodb://localhost:27017/newsdb', {
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-app.use(helmet);
+app.use(helmet());
 
 // логгер запросов
 app.use(requestLogger);
