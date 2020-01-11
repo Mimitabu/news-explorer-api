@@ -8,6 +8,7 @@ const {
   notFoundErrorMessage,
   authorizedMessage,
 } = require('../messages');
+const key = require('../key');
 
 const { NODE_ENV, JWT_SECRET } = process.env;
 
@@ -60,7 +61,7 @@ const login = (req, res, next) => {
           }
           const token = jwt.sign(
             { _id: user._id },
-            NODE_ENV === 'production' ? JWT_SECRET : 'dev-secret',
+            NODE_ENV === 'production' ? JWT_SECRET : key,
             { expiresIn: '7d' },
           );
           return res.cookie('jwt', token, {

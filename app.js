@@ -16,8 +16,11 @@ const auth = require('./middlewares/auth');
 const { signinValidation, signupValidation } = require('./validation');
 const centraliseErrors = require('./middlewares/centraliseErrors');
 const { notFoundErrorMessage } = require('./messages');
+const mongodb = require('./mongodb');
 
-mongoose.connect('mongodb://localhost:27017/newsdb', {
+const { NODE_ENV, MONGO_DB } = process.env;
+
+mongoose.connect(NODE_ENV === 'production' ? MONGO_DB : mongodb, {
   useNewUrlParser: true,
   useCreateIndex: true,
   useFindAndModify: false,
