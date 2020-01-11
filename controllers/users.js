@@ -7,7 +7,7 @@ const {
   unauthorizedErrorMessage,
   notFoundErrorMessage,
   authorizedMessage,
-} = require('../messages');
+} = require('../messagesData');
 const key = require('../key');
 
 const { NODE_ENV, JWT_SECRET } = process.env;

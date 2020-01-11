@@ -4,7 +4,7 @@ const ForbiddenError = require('../errors/forbidden-error');
 const {
   ForbiddenErrorMessage,
   notFoundErrorMessage,
-} = require('../messages');
+} = require('../messagesData');
 
 // возвращает все статьи пользователя, что есть в базе
 const getArticles = (req, res, next) => {

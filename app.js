@@ -15,7 +15,7 @@ const { routerUsers, routerArticles } = require('./routes/index');
 const auth = require('./middlewares/auth');
 const { signinValidation, signupValidation } = require('./validation');
 const centraliseErrors = require('./middlewares/centraliseErrors');
-const { notFoundErrorMessage } = require('./messages');
+const { notFoundErrorMessage } = require('./messagesData');
 const mongodb = require('./mongodb');
 
 const { NODE_ENV, MONGO_DB } = process.env;

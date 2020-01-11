@@ -1,4 +1,4 @@
-const serverError = require('../messages');
+const { serverError } = require('../messagesData');
 // централизованный обработчик ошибок
 module.exports = (err, req, res, next) => {
   const { statusCode = 500, message } = err;
