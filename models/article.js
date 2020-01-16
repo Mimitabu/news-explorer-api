@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const validator = require('validator');
+const invalidrURL = require('../messagesData');
 
 // схема модели
 const userSchema = new mongoose.Schema({
@@ -31,7 +32,7 @@ const userSchema = new mongoose.Schema({
     required: true,
     validate: {
       validator: (v) => validator.isURL(v, { protocols: ['http', 'https'], require_tld: true, require_protocol: true }),
-      message: 'It is not valid URL',
+      message: invalidrURL,
     },
   },
   image: {
@@ -39,7 +40,7 @@ const userSchema = new mongoose.Schema({
     required: true,
     validate: {
       validator: (v) => validator.isURL(v, { protocols: ['http', 'https'], require_tld: true, require_protocol: true }),
-      message: 'It is not valid URL',
+      message: invalidrURL,
     },
   },
   owner: {
