@@ -25,6 +25,7 @@
     "cross-env": "^6.0.3",
     "crypto": "^1.0.1",
     "dotenv": "^8.2.0",
+    "editorconfig": "^0.15.3",
     "eslint-config-airbnb-base": "^14.0.0",
     "eslint-plugin-import": "^2.19.1",
     "express": "^4.17.1",

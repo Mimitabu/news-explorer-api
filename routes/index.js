@@ -1,7 +1,9 @@
-const routerUsers = require('../routes/users');
-const routerArticles = require('../routes/articles');
+const routerUsers = require('./users');
+const routerArticles = require('./articles');
+const routerUserAuth = require('./userAuth');
 
 module.exports = {
   routerUsers,
   routerArticles,
+  routerUserAuth,
 };
