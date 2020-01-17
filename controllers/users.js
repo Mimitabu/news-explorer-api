@@ -3,10 +3,12 @@ const bcrypt = require('bcryptjs');
 const User = require('../models/user');
 const UnauthorizedError = require('../errors/unauthorized-error');
 const NotFoundError = require('../errors/not-found-error');
+const NotUniqueError = require('../errors/not-unique-error');
 const {
   unauthorizedErrorMessage,
   notFoundErrorMessage,
   authorizedMessage,
+  notUniqueErrorMessage,
 } = require('../messagesData');
 const key = require('../key');
 
@@ -32,6 +34,13 @@ const createUser = (req, res, next) => {
   const {
     name, email, password,
   } = req.body;
+
+  User.findOne({ email: req.body.email })
+    .then((user) => {
+      if (user) {
+        next(new NotUniqueError(notUniqueErrorMessage));
+      }
+    });
 
   bcrypt.hash(password, 10)
     .then((hash) => User.create({

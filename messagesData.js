@@ -6,6 +6,7 @@ const loginErrorMessage = 'You need to login';
 const serverError = 'An error occurred on the server';
 const invalidrURL = 'It is not valid URL';
 const invalidEmail = 'It is not valid email';
+const notUniqueErrorMessage = 'A user with this email already exists';
 
 module.exports = {
   notFoundErrorMessage,
@@ -16,4 +17,5 @@ module.exports = {
   serverError,
   invalidrURL,
   invalidEmail,
+  notUniqueErrorMessage,
 };
