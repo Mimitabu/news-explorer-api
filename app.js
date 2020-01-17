@@ -11,9 +11,7 @@ const limiter = require('./limiter');
 const { PORT = 3000 } = process.env;
 const { requestLogger, errorLogger } = require('./middlewares/logger');
 const routes = require('./routes/index');
-// const auth = require('./middlewares/auth');
 const centraliseErrors = require('./middlewares/centraliseErrors');
-const { notFoundErrorMessage } = require('./messagesData');
 const mongodb = require('./mongodb');
 
 const { NODE_ENV, MONGO_DB } = process.env;
@@ -38,16 +36,11 @@ app.use(requestLogger);
 app.use('/', routes.routerUserAuth);
 
 // роуты, защищенные авторизацией
-// app.use(auth);
-
 app.use('/', routes.routerUsers);
 app.use('/', routes.routerArticles);
 
 // роут по умолчанию
-app.use('*', (req, res) => {
-  res.set('Content-Type', 'application/json');
-  res.status(404).send({ message: notFoundErrorMessage });
-});
+app.use('*', routes.routerDefault);
 
 // логгер ошибок
 app.use(errorLogger);
