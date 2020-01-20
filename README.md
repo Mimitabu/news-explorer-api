@@ -30,11 +30,11 @@ npm install
 
 3. Запустить локальный сервер:  
 `
-npm run dev
+npm start dev
 `
 
 4. Запустить production сервер:  
 `
-npm run start
+npm start
 `
 
