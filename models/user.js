@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 const validator = require('validator');
-const invalidEmail = require('../messagesData');
+const { invalidEmail } = require('../messagesData');
 
 // схема модели
 const userSchema = new mongoose.Schema({
