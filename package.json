@@ -1,0 +1,45 @@
+{
+  "name": "news-explorer-api",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node app.js",
+    "dev": "nodemon app.js",
+    "lint": "eslint --ext=.js ./ --ignore-path .gitignore"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Mimitabu/news-explorer-api.git"
+  },
+  "author": "Marie Slavina",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Mimitabu/news-explorer-api/issues"
+  },
+  "homepage": "https://github.com/Mimitabu/news-explorer-api#readme",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.19.0",
+    "celebrate": "^11.0.0",
+    "cross-env": "^6.0.3",
+    "crypto": "^1.0.1",
+    "dotenv": "^8.2.0",
+    "editorconfig": "^0.15.3",
+    "eslint-config-airbnb-base": "^14.0.0",
+    "eslint-plugin-import": "^2.19.1",
+    "express": "^4.17.1",
+    "express-rate-limit": "^5.0.0",
+    "express-winston": "^4.0.2",
+    "helmet": "^3.21.2",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^5.8.4",
+    "validator": "^12.1.0",
+    "winston": "^3.2.1"
+  },
+  "devDependencies": {
+    "eslint": "^6.8.0",
+    "nodemon": "^2.0.2"
+  },
+  "keywords": []
+}
