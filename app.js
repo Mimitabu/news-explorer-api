@@ -42,6 +42,9 @@ app.use('/', routes.routerArticles);
 // роут по умолчанию
 app.use('*', routes.routerDefault);
 
+// разрешение некоторых кросс-доменных запросов
+app.use('*', routes.routerCors);
+
 // логгер ошибок
 app.use(errorLogger);
 
