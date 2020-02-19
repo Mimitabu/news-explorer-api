@@ -1,7 +1,6 @@
 require('dotenv').config();
 const helmet = require('helmet');
 const express = require('express');
-const cors = require('cors');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 
@@ -24,20 +23,6 @@ mongoose.connect(NODE_ENV === 'production' ? MONGO_DB : mongodb, {
   useUnifiedTopology: true,
 });
 
-// const whitelist = ['http://localhost:8080', 'http://news-explorer.pw'];
-// const corsOptionsDelegate = function (req, callback) {
-//   const corsOptions;
-//   if (whitelist.indexOf(req.header('Origin')) !== -1) {
-//     corsOptions = { origin: true }; // reflect (enable) the requested origin in the CORS response
-//   } else {
-//     corsOptions = { origin: false }; // disable CORS for this request
-//   }
-//   callback(null, corsOptions);// callback expects two parameters: error and options
-// };
-
-
-// app.use(cors(corsOptionsDelegate));
-
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
@@ -46,9 +31,6 @@ app.use(limiter);
 
 // логгер запросов
 app.use(requestLogger);
-
-// разрешение некоторых кросс-доменных запросов
-
 
 // аутентификация и авторизация
 app.use('/', routes.routerUserAuth);
