@@ -17,6 +17,18 @@ const mongodb = require('./mongodb');
 
 const { NODE_ENV, MONGO_DB } = process.env;
 
+const whitelist = ['http://localhost:8080', 'http://news-explorer.pw'];
+
+const corsOptions = {
+  origin: function (origin, callback) {
+    if (whitelist.indexOf(origin) !== -1) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
+};
+
 mongoose.connect(NODE_ENV === 'production' ? MONGO_DB : mongodb, {
   useNewUrlParser: true,
   useCreateIndex: true,
