@@ -36,7 +36,7 @@ mongoose.connect(NODE_ENV === 'production' ? MONGO_DB : mongodb, {
   useUnifiedTopology: true,
 });
 
-app.use(cors());
+app.use(cors(corsOptions));
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
