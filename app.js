@@ -43,7 +43,7 @@ app.use('/', routes.routerArticles);
 app.use('*', routes.routerDefault);
 
 // разрешение некоторых кросс-доменных запросов
-app.use('*', routes.routerCors);
+app.use('/', routes.routerCors);
 
 // логгер ошибок
 app.use(errorLogger);
