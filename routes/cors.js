@@ -21,8 +21,8 @@
 const cors = require('cors');
 
 
-const whitelist = ['localhost:8080', 'http://news-explorer.pw'];
-var corsOptions = {
+const whitelist = ['http://localhost:8080', 'http://news-explorer.pw'];
+const corsOptions = {
   origin: function (origin, callback) {
     if (whitelist.indexOf(origin) !== -1) {
       callback(null, true)
@@ -31,3 +31,5 @@ var corsOptions = {
     }
   }
 }
+
+module.exports = corsOptions;
