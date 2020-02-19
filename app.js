@@ -24,19 +24,19 @@ mongoose.connect(NODE_ENV === 'production' ? MONGO_DB : mongodb, {
   useUnifiedTopology: true,
 });
 
-const whitelist = ['http://localhost:8080', 'http://news-explorer.pw'];
-const corsOptionsDelegate = function (req, callback) {
-  const corsOptions;
-  if (whitelist.indexOf(req.header('Origin')) !== -1) {
-    corsOptions = { origin: true }; // reflect (enable) the requested origin in the CORS response
-  } else {
-    corsOptions = { origin: false }; // disable CORS for this request
-  }
-  callback(null, corsOptions);// callback expects two parameters: error and options
-};
+// const whitelist = ['http://localhost:8080', 'http://news-explorer.pw'];
+// const corsOptionsDelegate = function (req, callback) {
+//   const corsOptions;
+//   if (whitelist.indexOf(req.header('Origin')) !== -1) {
+//     corsOptions = { origin: true }; // reflect (enable) the requested origin in the CORS response
+//   } else {
+//     corsOptions = { origin: false }; // disable CORS for this request
+//   }
+//   callback(null, corsOptions);// callback expects two parameters: error and options
+// };
 
 
-app.use(cors(corsOptionsDelegate));
+// app.use(cors(corsOptionsDelegate));
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
