@@ -32,6 +32,9 @@ app.use(limiter);
 // логгер запросов
 app.use(requestLogger);
 
+// разрешение некоторых кросс-доменных запросов
+app.use('/', routes.routerCors);
+
 // аутентификация и авторизация
 app.use('/', routes.routerUserAuth);
 
@@ -41,9 +44,6 @@ app.use('/', routes.routerArticles);
 
 // роут по умолчанию
 app.use('*', routes.routerDefault);
-
-// разрешение некоторых кросс-доменных запросов
-app.use('/', routes.routerCors);
 
 // логгер ошибок
 app.use(errorLogger);
