@@ -1,22 +1,25 @@
-const routerCors = require('express').Router();
+// const routerCors = require('express').Router();
 
-// Массив разешённых доменов
-const allowedCors = [
-  'http://localhost:8080/',
-];
+// // Массив разешённых доменов
+// const allowedCors = [
+//   'http://localhost:8080/',
+// ];
 
-routerCors.use((req, res, next) => {
-  const { origin } = req.headers;
-  // Записываем в переменную origin соответствующий заголовок
-  // Проверяем, что значение origin есть среди разрешённых доменов
-  if (allowedCors.includes(origin)) {
-    res.header('Access-Control-Allow-Origin', origin);
-  }
+// routerCors.use((req, res, next) => {
+//   const { origin } = req.headers;
+//   console.log('req.headers', req.headers);
+//   console.log('origin', origin);
+//   // Записываем в переменную origin соответствующий заголовок
+//   // Проверяем, что значение origin есть среди разрешённых доменов
+//   if (allowedCors.includes(origin)) {
+//     res.header('Access-Control-Allow-Origin', origin);
+//     console.log('origin', origin);
+//   }
 
-  next();
-});
+//   next();
+// });
 
-module.exports = routerCors;
+// module.exports = routerCors;
 
 // const whitelist = ['http://localhost:8080', 'http://news-explorer.pw'];
 // const corsOptions = {

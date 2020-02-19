@@ -1,6 +1,7 @@
 require('dotenv').config();
 const helmet = require('helmet');
 const express = require('express');
+const cors = require('cors');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 
@@ -22,6 +23,8 @@ mongoose.connect(NODE_ENV === 'production' ? MONGO_DB : mongodb, {
   useFindAndModify: false,
   useUnifiedTopology: true,
 });
+
+app.use(cors());
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
