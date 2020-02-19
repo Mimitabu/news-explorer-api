@@ -33,7 +33,7 @@ app.use(limiter);
 app.use(requestLogger);
 
 // разрешение некоторых кросс-доменных запросов
-// app.use('/', routes.routerCors);
+app.use('/', routes.routerCors);
 
 // аутентификация и авторизация
 app.use('/', routes.routerUserAuth);
