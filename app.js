@@ -41,7 +41,7 @@ mongoose.connect(NODE_ENV === 'production' ? MONGO_DB : mongodb, {
 app.route('*')
   .all(function(req, res, next) {
     res.header('Access-Control-Allow-Methods', 'POST, GET, PUT, DELETE, OPTIONS');
-    res.header('Access-Control-Allow-Origin', 'https://localhost:8080');
+    res.header('Access-Control-Allow-Origin', '*');
     res.header('Access-Control-Allow-Headers', 'X-API-TOKEN, Content-Type, Authorization, Content-Length, X-Requested-With');
     next();
 });
