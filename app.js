@@ -28,9 +28,6 @@ const { NODE_ENV, MONGO_DB } = process.env;
 //   }
 // };
 
-
-
-
 mongoose.connect(NODE_ENV === 'production' ? MONGO_DB : mongodb, {
   useNewUrlParser: true,
   useFindAndModify: false,
@@ -45,8 +42,6 @@ app.route('*')
     res.header('Access-Control-Allow-Headers', 'X-API-TOKEN, Content-Type, Authorization, Content-Length, X-Requested-With');
     next();
 });
-
-// app.use(cors(corsOptions));
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));

@@ -78,7 +78,11 @@ const login = (req, res, next) => {
             httpOnly: true,
             sameSite: true,
           })
-            .send({ message: authorizedMessage })
+            .send({
+              userToken: token,
+              name: user.name,
+              email: user.email,
+            })
             .end();
         });
     })
