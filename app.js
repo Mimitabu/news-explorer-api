@@ -34,14 +34,25 @@ mongoose.connect(NODE_ENV === 'production' ? MONGO_DB : mongodb, {
   useUnifiedTopology: true,
 });
 
+const allowedCors = [
+  'http://news-explorer.pw',
+  'http://news-explorer.pw',
+  'http://www.news-explorer.pw',
+  'http://www.news-explorer.pw',
+  'https://mimitabu.github.io',
+  'https://mimitabu.github.io',
+  'http://localhost:8080',
+];
 
-app.route('*')
-  .all(function(req, res, next) {
-    res.header('Access-Control-Allow-Methods', 'POST, GET, PUT, DELETE, OPTIONS');
-    res.header('Access-Control-Allow-Origin', '*');
-    res.header('Access-Control-Allow-Headers', 'X-API-TOKEN, Content-Type, Authorization, Content-Length, X-Requested-With');
-    next();
-});
+
+cors({ origin: allowedCors });
+// app.route('*')
+//   .all(function(req, res, next) {
+//     res.header('Access-Control-Allow-Methods', 'POST, GET, PUT, DELETE, OPTIONS');
+//     res.header('Access-Control-Allow-Origin', '*');
+//     res.header('Access-Control-Allow-Headers', 'X-API-TOKEN, Content-Type, Authorization, Content-Length, X-Requested-With');
+//     next();
+// });
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
